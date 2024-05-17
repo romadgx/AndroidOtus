@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import otus.gpb.homework.activities.sender.Payload
-import otus.gpb.homework.activities.sender.SenderActivity
 
 
 class ReceiverActivity : AppCompatActivity() {
