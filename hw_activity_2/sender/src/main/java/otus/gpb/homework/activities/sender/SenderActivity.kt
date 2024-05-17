@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mylibrary.FILMS
 import com.example.mylibrary.Payload
 
 class SenderActivity : AppCompatActivity() {
@@ -44,14 +45,12 @@ class SenderActivity : AppCompatActivity() {
 
         btnOpenReceiver.setOnClickListener {
             val interstellar = Payload("Interstellar", "2014", "interstellar description ...")
-            val niceguys = Payload("Niceguys", "2016", "niceguys description ...")
 
             val intent = Intent().apply {
                 setType("text/plain")
                 setAction("Action.SEND")
                 addCategory("Category.DEFAULT")
-                putExtra("FILMS1", interstellar)
-                putExtra("FILMS2", niceguys)
+                putExtra(FILMS, interstellar)
             }
             startActivity(intent)
         }

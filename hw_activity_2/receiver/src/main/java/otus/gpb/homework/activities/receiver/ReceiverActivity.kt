@@ -1,9 +1,14 @@
 package otus.gpb.homework.activities.receiver
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mylibrary.FILMS
+import com.example.mylibrary.Payload
 
 
 class ReceiverActivity : AppCompatActivity() {
@@ -13,6 +18,7 @@ class ReceiverActivity : AppCompatActivity() {
     private lateinit var yearTextView: TextView
     private lateinit var titleTextView: TextView
 
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receiver)
@@ -22,9 +28,9 @@ class ReceiverActivity : AppCompatActivity() {
         yearTextView = findViewById(R.id.yearTextView)
         titleTextView = findViewById(R.id.titleTextView)
 
-        // Вот тут я застрял, я что то не понимаю как принять данные из другого приложения....
-        // все перепробовал но ни к чему не пришел. Нуждаюсь в вашем совете.... Спасибо.
-//        val payload: Payload? = intent.extras?.getParcelable("FILMS1")
-//        descriptionTextView.setText(payload?.description)
+
+        val payload: Payload? = intent.extras?.getParcelable(FILMS)
+        Log.i("PAYLOAD_TEST", payload?.description.toString())
+
     }
 }
