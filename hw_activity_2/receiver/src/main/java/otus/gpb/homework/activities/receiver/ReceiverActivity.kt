@@ -1,5 +1,6 @@
 package otus.gpb.homework.activities.receiver
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -7,8 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
+import com.example.mylibrary.DESCR
 import com.example.mylibrary.FILMS
 import com.example.mylibrary.Payload
+import com.example.mylibrary.TITLE
+import com.example.mylibrary.YEAR
 
 
 class ReceiverActivity : AppCompatActivity() {
@@ -29,8 +35,21 @@ class ReceiverActivity : AppCompatActivity() {
         titleTextView = findViewById(R.id.titleTextView)
 
 
-        val payload: Payload? = intent.extras?.getParcelable(FILMS)
-        Log.i("PAYLOAD_TEST", payload?.description.toString())
+        val title = intent.extras?.getString(TITLE)
+        val descr = intent.extras?.getString(DESCR)
+        val year = intent.extras?.getString(YEAR)
+
+        titleTextView.text = title
+        descriptionTextView.text = descr
+        yearTextView.text = year
+
+        if (title == "Interstellar") {
+            val image = ResourcesCompat.getDrawable(getResources(), R.drawable.interstellar, null);
+            posterImageView.setImageDrawable(image)
+        } else if (title == "Interstellar") {
+            val image = ResourcesCompat.getDrawable(getResources(), R.drawable.niceguys, null);
+            posterImageView.setImageDrawable(image)
+        }
 
     }
 }

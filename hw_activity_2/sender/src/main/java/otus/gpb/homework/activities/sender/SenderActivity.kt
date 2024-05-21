@@ -5,8 +5,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mylibrary.DESCR
 import com.example.mylibrary.FILMS
 import com.example.mylibrary.Payload
+import com.example.mylibrary.TITLE
+import com.example.mylibrary.YEAR
 
 class SenderActivity : AppCompatActivity() {
 
@@ -25,7 +28,7 @@ class SenderActivity : AppCompatActivity() {
         btnOpenMap.setOnClickListener {
             val intent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("geo:0,0?q=Рестораны") // не смог понять как получить "текущую локацию"
+                Uri.parse("geo:0,0?q=Рестораны")
             ).apply {
                 setPackage("com.google.android.apps.maps")
             }
@@ -44,15 +47,16 @@ class SenderActivity : AppCompatActivity() {
         }
 
         btnOpenReceiver.setOnClickListener {
-            val interstellar = Payload("Interstellar", "2014", "interstellar description ...")
-
             val intent = Intent().apply {
                 setType("text/plain")
-                setAction("Action.SEND")
-                addCategory("Category.DEFAULT")
-                putExtra(FILMS, interstellar)
+                setAction(Intent.ACTION_SEND)
+                addCategory(Intent.CATEGORY_DEFAULT)
+                putExtra(TITLE, "Interstellar")
+                putExtra(DESCR, "interstellar description ...")
+                putExtra(YEAR, "2014")
             }
-            startActivity(intent)
+            val chooser = Intent.createChooser(intent, "Receive a movie")
+            startActivity(chooser)
         }
 
     }
